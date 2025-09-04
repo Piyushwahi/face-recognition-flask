@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Piyush Wahi",
+    "age": 20,
+    "college": "Currently in college",
+    "skills": ["Python", "AI", "Flask"],
+    "github": "https://github.com/Piyushwahi",
+    "linkedin": "https://www.linkedin.com/in/piyush-wahi-722811323/",
+    "folder": "piyush"
+  },
+  {
+    "name": "Rijul Sharma",
+    "age": 21,
+    "college": "Currently in college",
+    "skills": ["C++", "JavaScript", "React"],
+    "github": "https://github.com/rijulsharma",
+    "linkedin": "https://www.linkedin.com/in/rijul-sharma/",
+    "folder": "rijul"
+  }
+]

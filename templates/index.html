@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Person Recognition</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>👤 Person Recognition System</h1>
+
+    <!-- Upload Form -->
+    <form method="POST" enctype="multipart/form-data" class="upload-form">
+      <input type="file" name="file" accept="image/*" required>
+      <button type="submit">🔍 Detect</button>
+    </form>
+
+    <!-- Error Message -->
+    {% if error %}
+      <p class="error">{{ error }}</p>
+    {% endif %}
+
+    <!-- Result Card -->
+    {% if detected %}
+    <div class="card">
+      <!-- Profile Picture -->
+      <div class="profile-pic">
+        <img src="{{ uploaded_image }}" alt="Uploaded Image">
+      </div>
+
+      <!-- Info Section -->
+      <div class="card-content">
+        <h2>{{ name }}</h2>
+        <p><strong>Age:</strong> {{ age }}</p>
+        <p><strong>College:</strong> {{ college }}</p>
+        <p><strong>Skills:</strong> {{ skills|join(', ') }}</p>
+
+        <div class="btn-group">
+          <a href="{{ github }}" target="_blank" class="btn github">🌐 GitHub</a>
+          <a href="{{ linkedin }}" target="_blank" class="btn linkedin">💼 LinkedIn</a>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</body>
+</html>

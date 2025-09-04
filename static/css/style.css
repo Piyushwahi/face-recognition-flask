@@ -1,0 +1,151 @@
+/* Premium Gradient Background */
+body {
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(to right, #fdfcfb, #e2d1c3);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+}
+
+/* Main Container */
+.container {
+  text-align: center;
+  margin-top: 40px;
+  width: 90%;
+  max-width: 800px;
+}
+
+h1 {
+  font-size: 30px;
+  color: #4a2c2a;
+  font-weight: 700;
+  margin-bottom: 25px;
+}
+
+/* Upload Form */
+.upload-form {
+  background: #fff;
+  padding: 15px 20px;
+  border-radius: 15px;
+  box-shadow: 0px 4px 12px rgba(0,0,0,0.15);
+  display: inline-flex;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.upload-form input[type="file"] {
+  border: 1px solid #cbb9a8;
+  padding: 6px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.upload-form button {
+  background: linear-gradient(90deg, #d4a373, #b07d62);
+  border: none;
+  padding: 8px 16px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.upload-form button:hover {
+  transform: scale(1.05);
+  background: linear-gradient(90deg, #b07d62, #8d5524);
+}
+
+/* Card */
+.card {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 20px;
+  padding: 25px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  gap: 25px;
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Profile Picture */
+.profile-pic img {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  border: 4px solid #d4a373;
+  object-fit: cover;
+  box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
+}
+
+/* Card Content */
+.card-content {
+  text-align: left;
+  flex: 1;
+}
+
+.card-content h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #3e2723;
+}
+
+.card-content p {
+  margin: 5px 0;
+  font-size: 15px;
+  color: #5d4037;
+}
+
+.card-content strong {
+  color: #3e2723;
+}
+
+/* Buttons */
+.btn-group {
+  margin-top: 15px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 8px 16px;
+  margin: 5px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.github {
+  background: #333;
+  color: #fff;
+}
+
+.github:hover {
+  background: #555;
+}
+
+.linkedin {
+  background: #0077b5;
+  color: #fff;
+}
+
+.linkedin:hover {
+  background: #005582;
+}
+
+/* Error Message */
+.error {
+  color: red;
+  font-weight: bold;
+  margin-top: 15px;
+}
