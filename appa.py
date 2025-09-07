@@ -7,7 +7,7 @@ from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 
-# Save uploads inside static/uploads
+# Save runtime uploads inside static/uploads
 UPLOAD_FOLDER = os.path.join("static", "uploads")
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 
@@ -25,7 +25,8 @@ def load_known_faces():
     known_names = []
 
     for user in users:
-        folder = os.path.join("uploads", user["folder"])  # training images
+        # Training images are inside uploads/<folder>
+        folder = os.path.join("uploads", user["folder"])
         if not os.path.exists(folder):
             continue
 
@@ -40,7 +41,7 @@ def load_known_faces():
             except Exception as e:
                 print(f"Error processing {filepath}: {e}")
 
-    print("Loaded known users:", known_names)
+    print("Loaded known users:", known_names)  # Debugging
     return known_encodings, known_names
 
 
@@ -59,11 +60,12 @@ def index():
         if file.filename == "":
             return redirect(request.url)
 
+        # Save uploaded file
         filename = secure_filename(file.filename)
         filepath = os.path.join(app.config["UPLOAD_FOLDER"], filename)
         file.save(filepath)
 
-        # Load uploaded image
+        # Load uploaded image and encode
         img = face_recognition.load_image_file(filepath)
         encs = face_recognition.face_encodings(img)
 
@@ -72,16 +74,22 @@ def index():
 
         uploaded_encoding = encs[0]
 
-        # Compare with known faces using distance
-        distances = face_recognition.face_distance(known_face_encodings, uploaded_encoding)
-        print("Distances:", distances)
+        # Compare with known faces
+        results = face_recognition.compare_faces(
+            known_face_encodings, uploaded_encoding, tolerance=0.4
+        )
+        distances = face_recognition.face_distance(
+            known_face_encodings, uploaded_encoding
+        )
+
+        print("Distances:", distances)  # Debugging
 
         if len(distances) > 0:
             best_match_index = np.argmin(distances)
-            if distances[best_match_index] < 0.45:  # stricter tolerance
+            if results[best_match_index]:
                 person_name = known_face_names[best_match_index]
 
-                # fetch info from database.json
+                # Fetch info from database.json
                 users = load_users()
                 info = next((u for u in users if u["folder"] == person_name), {})
 
@@ -93,7 +101,9 @@ def index():
                     skills=info.get("skills", []),
                     github=info.get("github", ""),
                     linkedin=info.get("linkedin", ""),
-                    uploaded_image=url_for("static", filename=f"uploads/{filename}"),
+                    uploaded_image=url_for(
+                        "static", filename=f"uploads/{filename}"
+                    ),
                     detected=True,
                 )
 
@@ -103,5 +113,6 @@ def index():
 
 
 if __name__ == "__main__":
-    os.makedirs(app.config["UPLOAD_FOLDER"], exist_ok=True)
-    app.run(debug=True)
+    os.makedirs(app.config["UPLOAD_FOLDER"], exist_ok=True)  # auto create uploads folder
+    port = int(os.environ.get("PORT", 5000))  # Railway gives PORT dynamically
+    app.run(host="0.0.0.0", port=port, debug=False)  # debug=False in production

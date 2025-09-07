@@ -1,0 +1,55 @@
+
+# Python cache and bytecode
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pkl
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs and database
+*.log
+instance/
+*.db
+*.sqlite3
+
+# Flask cache and settings
+*.pyc
+*.egg-info/
+*.eggs/
+*.bak
+
+# Config files
+*.env
+.env.*
+*.ini
+*.toml
+config.py
+
+# Build and dist
+build/
+dist/
+*.egg
+*.manifest
+
+# OS specific
+.DS_Store
+Thumbs.db
+
+# Coverage / testing
+.coverage
+htmlcov/
+.tox/
+.pytest_cache/
+.mypy_cache/

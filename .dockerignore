@@ -1,0 +1,31 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+*.log
+*.env
+*.venv
+venv/
+.git
+.gitignore
+uploads/
+static/uploads/
+.DS_Store
+.env*
+.idea/
+.vscode/
+node_modules/
+# Exclude local images and cache
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.bmp
+*.tiff
+*.ico
+# Exclude test and temp files
+*.swp
+*.bak
+*.tmp
