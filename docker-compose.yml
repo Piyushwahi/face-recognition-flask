@@ -1,0 +1,22 @@
+version: "3.9"
+
+services:
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_ENV=development
+      - DEBUG=True
+      - SECRET_KEY=${SECRET_KEY:-dev-secret-key-change-in-production}
+      - UPLOAD_FOLDER=static/uploads
+      - PORT=5000
+    volumes:
+      - .:/app
+      - uploads_data:/app/static/uploads
+      - uploads_training:/app/uploads
+    restart: unless-stopped
+
+volumes:
+  uploads_data:
+  uploads_training:
